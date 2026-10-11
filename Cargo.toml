@@ -1,0 +1,26 @@
+[package]
+name = "meta"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.6.7", features = ["derive", "wrap_help"] }
+anyhow = "1.0.104"
+colored = "3.1.1"
+chrono = "0.4.45"
+infer = "0.22.0"
+walkdir = "2.5.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.152"
+kamadak-exif = "0.6.1"
+lofty = "0.25.4"
+revelo = "0.5.6"
+nom-exif = "3.8.0"
+
+[profile.release]
+opt-level = 3            # максимальная оптимизация
+lto = "fat"              # полный LTO — меньше и быстрее бинарник
+codegen-units = 1        # лучше инлайнинг, ценой времени сборки
+panic = "abort"          # бинарник меньше, без разворачивания стека
+strip = "symbols"        # выкинуть символы из бинарника
+incremental = false      # не нужно для релиза
